@@ -13,6 +13,7 @@ namespace ProductsCRUD.Data
         }
         public void AdicionarProduto()
         {
+            Console.WriteLine("-----------------------------");
             Console.WriteLine("Digite o nome do produto:");
             var nome = Console.ReadLine();
 
@@ -30,29 +31,33 @@ namespace ProductsCRUD.Data
 
         public void RemoverProduto()
         {
+            Console.WriteLine("-----------------------------");
             Console.WriteLine("Digite o ID do produto a ser removido:");
             var id = int.Parse(Console.ReadLine()!);
 
             var produtoParaRemover = context.Products.FirstOrDefault(p => p.Id == id)!;
-            if (produtoParaRemover != null)
+            if (produtoParaRemover is not null)
             {
                 context.Products.Remove(produtoParaRemover);
                 context.SaveChanges();
                 Console.WriteLine("Produto removido com sucesso.");
+                Console.WriteLine("-----------------------------");
             }
             else
             {
                 Console.WriteLine("Produto não encontrado.");
+                Console.WriteLine("-----------------------------");
             }
         }
 
         public void EditarNomeDoProduto()
         {
+            Console.WriteLine("----------------------------------");
             Console.WriteLine("Digite o ID do produto a ser editado:");
             var id = int.Parse(Console.ReadLine()!);
 
             var produtoParaEditar = context.Products.FirstOrDefault(p => p.Id == id)!;
-            if (produtoParaEditar != null)
+            if (produtoParaEditar is not null)
             {
                 Console.WriteLine("Digite o novo nome do produto:");
                 var novoNome = Console.ReadLine()!;
@@ -60,10 +65,12 @@ namespace ProductsCRUD.Data
                 produtoParaEditar.UpdateNome(novoNome);
                 context.SaveChanges();
                 Console.WriteLine("Nome do produto atualizado com sucesso.");
+                Console.WriteLine("-----------------------------");
             }
             else
             {
                 Console.WriteLine("Produto não encontrado.");
+                Console.WriteLine("-----------------------------");
             }
         }
 
