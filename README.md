@@ -1,9 +1,11 @@
-Esse desafio consiste em CRUD criado em Console Application.
-Utilizei o Entity Framework para conexão com o banco de dados SQL Server.
-Na pasta Entities se encontra o modelo que representa o produto
-Na pasta Data se encontra os dados relacionados ao banco de dados, como o contexto para persistencia dos dados e um repositorio que contem as querys relacionadas as consultas e alterações no banco de dados
-As tabelas foram geradas usando as migrations do entity framework core
-Para melhor separação de responsabilidade a classe ChamarServiço contém a lógica de interacao com o usuário e a configuração do IServiceCollection para que possa usar a injeção de dependencia no projeto e também onde sao chamados os metodos para persistência dos dados no Banco de dados
-Para poder utilizar você terá que atualizar a string de conexao do seu banco SqlServer que se encontra na pasta extensions, dentro da classe DependencyInjection.
-Em seguida executar o comando Update-Database no seu Package Manager Console para gerar o banco de dados
-Depois é so executar a aplicação, foi utilizado a versao 7.0 do .NET
+Este desafio envolve a criação de um aplicativo de Console Application com operações CRUD (Create, Read, Update, Delete) usando o Entity Framework para se conectar a um banco de dados SQL Server.
+
+A estrutura do projeto é organizada da seguinte forma:
+
+A pasta "Entities" contém o modelo de domínio que representa o produto.
+A pasta "Data" contém os componentes relacionados ao banco de dados, incluindo o contexto para persistência de dados e um repositório com consultas e operações no banco de dados.
+As tabelas do banco de dados foram criadas usando as migrations do Entity Framework Core.
+Para separação de responsabilidades, a classe "ChamarServiço" lida com a interação do usuário, configura o "IServiceCollection" para injeção de dependência e chama os métodos para persistência dos dados no banco de dados.
+Uma classe de serviços também foi criada para separar a lógica de negócios da lógica de acesso aos dados.
+
+Para executar o projeto, você precisará atualizar a string de conexão para seu banco de dados SQL Server, localizada na pasta "Extensions", dentro da classe "DependencyInjection". Em seguida, execute o comando "Update-Database" no Package Manager Console para gerar o banco de dados. Após essas etapas, você pode executar a aplicação. O projeto foi desenvolvido com o .NET 7.0.
