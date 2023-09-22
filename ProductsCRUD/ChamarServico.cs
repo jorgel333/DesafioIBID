@@ -1,14 +1,22 @@
-﻿using ProductsCRUD.Data;
+﻿using Microsoft.Extensions.DependencyInjection;
+using ProductsCRUD.Data;
+using ProductsCRUD.Extensions;
+using ProductsCRUD.Interfaces.Services;
 
 namespace ProductsCRUD;
 
-public class InterfaceDeInteracao
+public class ChamarServico
 {
     public static void ChamarCRUD()
     {
         bool continuar = true;
 
-        var products = new ProductRepository();
+        var serviceCollection = new ServiceCollection();
+        DependencyInjection.ConfigureServices(serviceCollection);
+
+        var serviceProvider = serviceCollection.BuildServiceProvider();
+        var eventService = serviceProvider.GetService<IProductService>();
+
         while (continuar)
         {
             Console.WriteLine("Escolha uma opção:");
@@ -24,19 +32,19 @@ public class InterfaceDeInteracao
             switch (opcao)
             {
                 case 1:
-                    products.AdicionarProduto();
+                    eventService!.AdicionarProduto();
                     break;
                 case 2:
-                    products.RemoverProduto();
+                    eventService!.RemoverProduto();
                     break;
                 case 3:
-                    products.EditarNomeDoProduto();
+                    eventService!.EditarNomeDoProduto();
                     break;
                 case 4:
-                    products.VisualizarProdutos();
+                    eventService!.VisualizarTodosProdutos();
                     break;
                 case 5:
-                    products.VizualizarProdutoID();
+                    eventService!.VizualizarProdutoID();
                     break;
                 case 6:
                     continuar = false;
